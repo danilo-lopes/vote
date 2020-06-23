@@ -2,7 +2,7 @@ pipeline {
 
   environment {
     registry = "dansolo7/voting"
-    registryCredential = "dockerhub_credential"
+    registryCredential = 'dockerhub'
     dockerImage = ""
   }
 
