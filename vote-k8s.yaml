@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: voteapp
+  namespace: default
   annotations:
   labels:
     run: vote
@@ -45,7 +45,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: voteapp
+  namespace: default
   labels:
     run: vote
   name: vote-service
@@ -63,7 +63,7 @@ spec:
   apiVersion: extensions/v1beta1
   kind: Ingress
   metadata:
-    namespace: voteapp
+    namespace: default
     name: vote-ingress
     annotations:
       kubernetes.io/ingress.class: nginx
