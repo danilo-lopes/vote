@@ -30,6 +30,7 @@ pipeline {
         script {
           withDockerRegistry([ credentialsId: 'dockerhub_credential', url: "" ]) {
             dockerImage.push()
+            dockerImage.push('latest')
           }
         }
       }
