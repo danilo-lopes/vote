@@ -20,7 +20,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build dansolo7/voting + ":$BUILD_NUMBER"
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
@@ -29,7 +29,7 @@ pipeline {
       steps{
         script {
           echo registryCredential
-          docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
+          withDockerRegistry([ credentialsId: registryCredential, url: "" ]) {
             dockerImage.push()
             dockerImage.push('latest')
           }
