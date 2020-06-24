@@ -77,4 +77,4 @@ spec:
           - path: /
             backend:
               serviceName: vote-service # Selecting Service
-              servicePort: 80apiVersion: extensions/v1beta1
+              servicePort: 80
