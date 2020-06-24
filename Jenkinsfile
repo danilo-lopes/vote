@@ -28,10 +28,8 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
-          echo registryCredential
-          withDockerRegistry([ credentialsId: registryCredential, url: "" ]) {
+          withDockerRegistry([ credentialsId: 'dockerhub_credential', url: "" ]) {
             dockerImage.push()
-            dockerImage.push('latest')
           }
         }
       }
