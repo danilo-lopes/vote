@@ -29,8 +29,9 @@ pipeline {
       steps{
         script {
           echo registryCredential
-          withDockerRegistry( registryCredential ) {
+          docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
             dockerImage.push()
+            dockerImage.push('latest')
           }
         }
       }
