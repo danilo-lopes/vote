@@ -52,9 +52,9 @@ metadata:
 spec:
   externalTrafficPolicy: Cluster
   ports:
-  - port: 80 # Criada para intra cluster. Para Fazer o bind
+  - port: 80
     protocol: TCP
-    targetPort: 80 # Porta do container
+    targetPort: 80
   selector:
     run: vote
   sessionAffinity: None
@@ -74,5 +74,5 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: vote-service # Selecting Service
+              serviceName: vote-service
               servicePort: 80
