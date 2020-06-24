@@ -2,6 +2,7 @@ pipeline {
 
   environment {
     registry = "dansolo7/voting"
+    registryCredential = credential('dockerhub_credential')
     
     dockerImage = ""
   }
@@ -28,7 +29,7 @@ pipeline {
       steps{
         script {
           echo registryCredential
-          docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_credential') {
+          docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
             dockerImage.push()
             dockerImage.push('latest')
           }
