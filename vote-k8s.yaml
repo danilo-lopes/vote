@@ -1,12 +1,14 @@
 ---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   namespace: voteapp
   annotations:
   labels:
     run: vote
   name: vote-server
+
 spec:
   replicas: 1
   selector:
@@ -16,6 +18,7 @@ spec:
     metadata:
       labels:
         run: vote
+    
     spec:
       containers:
       - image: dansolo7/voting:$BUILD_NUMBER
@@ -31,13 +34,16 @@ spec:
             secretKeyRef:
               name: voteapp-secret
               key: aws_access_key
+        
         - name: AWS_SECRET_KEY
           valueFrom:
             secretKeyRef:
               name: voteapp-secret
               key: aws_secret_key
+        
         - name: AWS_REGION
           value: "us-east-1"
+      
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
