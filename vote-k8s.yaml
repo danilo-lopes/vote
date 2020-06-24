@@ -18,7 +18,7 @@ spec:
         run: vote
     spec:
       containers:
-      - image: dansolo7/voting:latest
+      - image: dansolo7/voting:$BUILD_NUMBER
         imagePullPolicy: Always
         name: vote
         ports:
