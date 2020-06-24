@@ -34,5 +34,13 @@ pipeline {
       }
     }
 
+    stage('Deploy App') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "vote-k8s.yaml", kubeconfigId: "	kubernetes_configfile")
+        }
+      }
+    }
+
   }
 }
