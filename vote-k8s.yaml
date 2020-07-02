@@ -21,7 +21,7 @@ spec:
     
     spec:
       containers:
-      - image: dansolo7/voting:$BUILD_NUMBER
+      - image: dansolo7/voting:$BUILD_ID
         imagePullPolicy: Always
         name: vote
         ports:
