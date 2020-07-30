@@ -1,14 +1,6 @@
 pipeline {
-
-  environment {
-    registry = "dansolo7/voting"
-    dockerImage = ""
-  }
-
   agent any
-
   stages {
-
     stage('Checkout Source') {
       steps {
         git 'https://github.com/danilo-lopes/vote'
@@ -16,20 +8,22 @@ pipeline {
     }
 
     stage('Build image') {
-      steps{
+      steps {
         script {
           dockerImage = docker.build registry + ":$BUILD_ID"
         }
+
       }
     }
 
     stage('Push Image') {
-      steps{
+      steps {
         script {
           withDockerRegistry([ credentialsId: 'dockerhub_credential', url: "" ]) {
             dockerImage.push()
           }
         }
+
       }
     }
 
@@ -38,8 +32,13 @@ pipeline {
         script {
           kubernetesDeploy(configs: "vote-k8s.yaml", kubeconfigId: "kubernetes_configfile")
         }
+
       }
     }
 
+  }
+  environment {
+    registry = 'dansolo7/voting'
+    dockerImage = ''
   }
 }
